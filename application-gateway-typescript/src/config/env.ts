@@ -21,6 +21,7 @@ interface EnvConfig {
     // Server
     port: number;
     nodeEnv: string;
+    corsOrigin: string;
 
     // Hyperledger Fabric
     channelName: string;
@@ -58,6 +59,7 @@ export const config: EnvConfig = {
     // Server
     port: parseInt(process.env.PORT || '3000'),
     nodeEnv: process.env.NODE_ENV || 'development',
+    corsOrigin: process.env.CORS_ORIGIN || '*',
 
     // Hyperledger Fabric
     channelName: process.env.CHANNEL_NAME || 'releasechannel',

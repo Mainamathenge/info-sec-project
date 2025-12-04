@@ -15,7 +15,12 @@ import subscriptionRoutes from './routes/subscriptions';
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: config.corsOrigin,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 
 // Health check endpoint
