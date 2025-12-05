@@ -27,7 +27,7 @@ export const Subscriptions = () => {
     const handleUnsubscribe = async (packageId: string) => {
         try {
             await apiClient.delete(`/packages/${packageId}/subscribe`);
-            setSubscriptions(subscriptions.filter(pkg => pkg.packageId !== packageId));
+            setSubscriptions(subscriptions.filter(pkg => pkg.package_id !== packageId));
         } catch (error) {
             console.error('Failed to unsubscribe:', error);
         }
@@ -57,11 +57,11 @@ export const Subscriptions = () => {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {subscriptions.map((pkg) => (
-                            <div key={pkg.packageId} className="card">
+                            <div key={pkg.package_id} className="card">
                                 <div className="flex items-start justify-between mb-3">
                                     <div className="flex-1">
                                         <h3 className="text-lg font-semibold text-gray-900">{pkg.name}</h3>
-                                        <p className="text-sm text-gray-500">{pkg.packageId}</p>
+                                        <p className="text-sm text-gray-500">{pkg.package_id}</p>
                                     </div>
                                     <Package className="h-8 w-8 text-primary-600" />
                                 </div>
@@ -70,24 +70,15 @@ export const Subscriptions = () => {
                                     <p className="text-sm text-gray-600 mb-4 line-clamp-2">{pkg.description}</p>
                                 )}
 
-                                <div className="flex items-center justify-between text-sm mb-4">
-                                    <span className="text-gray-500">
-                                        v{pkg.latestVersion || '1.0.0'}
-                                    </span>
-                                    <span className="text-gray-500">
-                                        {pkg.totalDownloads || 0} downloads
-                                    </span>
-                                </div>
-
-                                <div className="flex space-x-2">
+                                <div className="flex space-x-2 mt-4">
                                     <Link
-                                        to={`/package/${pkg.packageId}`}
+                                        to={`/package/${pkg.package_id}`}
                                         className="flex-1 btn-primary text-center"
                                     >
                                         View Details
                                     </Link>
                                     <button
-                                        onClick={() => handleUnsubscribe(pkg.packageId)}
+                                        onClick={() => handleUnsubscribe(pkg.package_id)}
                                         className="btn-secondary"
                                     >
                                         Unsubscribe

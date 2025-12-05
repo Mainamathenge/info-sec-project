@@ -8,16 +8,12 @@ export interface User {
 }
 
 export interface Package {
-    packageId: string;
+    package_id: string;
+    owner_id: string;
     name: string;
-    description?: string;
-    ownerId: number;
-    ownerUsername?: string;
-    latestVersion?: string;
-    totalVersions?: number;
-    totalDownloads?: number;
-    createdAt: string;
-    updatedAt: string;
+    description: string | null;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface PackageVersion {
@@ -32,12 +28,15 @@ export interface PackageVersion {
 }
 
 export interface Comment {
-    id: number;
-    packageId: string;
-    userId: number;
+    id: string;
+    package_id: string;
+    version: string;
+    user_id: string;
     username: string;
-    content: string;
-    createdAt: string;
+    comment_text: string;
+    rating: number | null;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface Subscription {
